@@ -1,0 +1,17 @@
+xzxzversion: "3"
+services:
+    qgis_tile_generator:
+        network_mode: host       
+        image: python_qgis:1.0.0
+        volumes:
+            - ".:/app"
+            - "${PUBLIC_GIS_FILES}:/app/public_gis_files"
+            - "${RASTER_GIS_FILES}:/app/raster_gis_files"
+        entrypoint: ./entrypoint.sh
+        environment:
+            - QT_QPA_PLATFORM=offscreen
+        #networks:
+        #    - main_network
+#networks:
+#    main_network:
+#        external: true
